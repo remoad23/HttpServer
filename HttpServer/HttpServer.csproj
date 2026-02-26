@@ -7,4 +7,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="Database\Seeder\Userseeder.txt" />
+      <Resource Include="Database\Seeder\Userseeder.txt" />
+    </ItemGroup>
+
 </Project>
