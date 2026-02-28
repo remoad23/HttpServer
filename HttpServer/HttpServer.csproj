@@ -9,7 +9,9 @@
 
     <ItemGroup>
       <None Remove="Database\Seeder\Userseeder.txt" />
-      <Resource Include="Database\Seeder\Userseeder.txt" />
+      <Resource Include="Database\Seeder\Userseeder.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
 </Project>

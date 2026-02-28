@@ -8,6 +8,8 @@ public class Server
 {
     private HttpListener _listener;
     private Lock _sendLocker;
+
+    private Database.Database _database;
     
     public Server(List<string> prefixes)
     {
@@ -24,6 +26,8 @@ public class Server
         {
             _listener.Prefixes.Add(s);
         }
+
+        _database = new Database.Database();
     }
     
     public void Start()
