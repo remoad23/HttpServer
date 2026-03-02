@@ -16,12 +16,6 @@ public class Server
         _listener = new HttpListener();
         _listener.Prefixes.Add("http://localhost:8080/");
         
-        // URI prefixes are required,
-        // for example "http://contoso.com:8080/index/".
-        // if (prefixes == null || prefixes.Length == 0)
-        //     throw new ArgumentException("prefixes");
-        
-        // Add the prefixes.
         foreach (string s in prefixes)
         {
             _listener.Prefixes.Add(s);

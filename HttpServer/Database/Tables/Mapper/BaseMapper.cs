@@ -11,10 +11,12 @@ public abstract class BaseMapper<TEntity> : IMapper<TEntity>
 
         while (!streamReader.EndOfStream)
         {
-            var entityInFile = streamReader.ReadLine()!
-                .Replace('{', ' ').Replace('{', ' ').Split(',').ToList();
+            var entityPropertiesInFile = streamReader.ReadLine()!
+                .Trim('{','}')
+                .Split(',')
+                .Select(p => p.Trim('"')).ToList();
 
-            var deserializedEntity = DeserializeEntity(entityInFile);
+            var deserializedEntity = DeserializeEntity(entityPropertiesInFile);
             entities.Add(deserializedEntity);
         }
 
