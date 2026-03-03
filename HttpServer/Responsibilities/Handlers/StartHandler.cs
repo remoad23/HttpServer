@@ -5,8 +5,8 @@ namespace HttpServer.Responsibilities;
 public class StartHandler : IHandler
 {
     public IHandler Next { get; set; }
-    public HttpResponse Execute(HttpRequest request)
+    public IHandler Execute(HttpRequest request)
     {
-        throw new NotImplementedException();
+        return Next.Execute(request);
     }
 }

@@ -15,12 +15,11 @@ public class Server
     {
         _listener = new HttpListener();
         _listener.Prefixes.Add("http://localhost:8080/");
-        
         foreach (string s in prefixes)
         {
             _listener.Prefixes.Add(s);
         }
-
+        
         _database = new Database.Database();
     }
     
@@ -56,7 +55,7 @@ public class Server
     {
         // Note: The GetContext method blocks while waiting for a request.
         var request = await _listener.GetContextAsync();
-        var httpRequest = new HttpRequest(); 
+        var httpRequest = new HttpRequest(request.Request); 
         return httpRequest;
     }
 

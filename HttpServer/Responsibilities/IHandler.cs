@@ -6,5 +6,5 @@ public interface IHandler
 {
     IHandler Next { get; set; }
     
-    HttpResponse Execute(HttpRequest request);
+    IHandler Execute(HttpRequest request);
 }

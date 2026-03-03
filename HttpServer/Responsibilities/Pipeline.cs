@@ -9,11 +9,14 @@ public class Pipeline
     public Pipeline()
     {
         _handlers = new ThreadLocal<List<IHandler>>();
-        _handlers.Value.Add(new StartHandler
-        {
-            Next = _handlers.Value[1]
-        });
+        _handlers.Value.Add(new StartHandler());
+        _handlers.Value.Add(new RoutingHandler());
         _handlers.Value.Add(new EndHandler());
+
+        for (var x = 0; x < _handlers.Value.Count-1; x++)
+        {
+            _handlers.Value[x].Next = _handlers.Value[x+1];
+        }
     }
     
     public HttpResponse ProcessRequest(HttpRequest request)
