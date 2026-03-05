@@ -5,11 +5,12 @@ namespace HttpServer.Database;
 
 public class Database
 {
-    private List<User> _users = new();
+    public List<User> _users = new();
 
     public Database()
     {
         LoadEntitiesFromFile();
+        _readerWriterLock = new ReaderWriterLockSlim();
     }
 
     private void LoadEntitiesFromFile()
