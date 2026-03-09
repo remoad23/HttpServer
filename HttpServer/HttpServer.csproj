@@ -14,4 +14,8 @@
       </Resource>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Routing\Views\" />
+    </ItemGroup>
+
 </Project>

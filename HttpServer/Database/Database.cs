@@ -3,22 +3,24 @@ using HttpServer.Database.Tables;
 
 namespace HttpServer.Database;
 
-public class Database
+public partial class Database
 {
-    public List<User> _users = new();
+    public List<User> _users;
+    public List<string> test;
 
     public Database()
     {
+        _users = [];
+        _readerWriterLocks = new ();
         LoadEntitiesFromFile();
-        _readerWriterLock = new ReaderWriterLockSlim();
     }
 
     private void LoadEntitiesFromFile()
     {
         var tablesOfDatabase = GetAllTables();
-        
         foreach (var table in tablesOfDatabase)
         {
+            _readerWriterLocks[table.FieldType] = (new ReaderWriterLockSlim(),GetTableByType(table.FieldType));
             var (mapper,seederPath) = GetMapperAndPathOfTable(table);
             var entityTypeOfTable = table.GetValue(this);
             var tableInFile = mapper.GetType().GetMethod("LoadEntitiesFromFile")!.Invoke(mapper, [seederPath]);

@@ -17,4 +17,6 @@ public class BaseEntity : IEntity
 
         return entityAsString;
     }
+
+    public Guid Id { get; set; }
 }
